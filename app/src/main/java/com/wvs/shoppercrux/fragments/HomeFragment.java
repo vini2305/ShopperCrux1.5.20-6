@@ -35,6 +35,8 @@ import com.wvs.shoppercrux.activities.MainActivity;
 import com.wvs.shoppercrux.helper.SQLiteHandler;
 import com.wvs.shoppercrux.helper.SessionManager;
 
+
+// we will do it in 19-8-16
 public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButtonClickListener, View.OnClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,LocationListener {
