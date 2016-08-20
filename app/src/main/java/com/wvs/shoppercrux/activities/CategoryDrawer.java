@@ -30,22 +30,17 @@ public class CategoryDrawer extends Fragment {
 
 
     private static String TAG = FragmentDrawer.class.getSimpleName();
-
+    private static String[] titles = null;
     private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private CategoryDrawerAdapter adapter;
     private View containerView;
-    private static String[] titles = null;
     private CategoryDrawerListener drawerListener;
     private ArrayList<Category> arrayList = new ArrayList<>();
 
     public CategoryDrawer() {
 
-    }
-
-    public void setDrawerListener(CategoryDrawerListener listener) {
-        this.drawerListener = listener;
     }
 
     public static List<CatDrawerItem> getData() {
@@ -59,6 +54,10 @@ public class CategoryDrawer extends Fragment {
             data.add(navItem);
         }
         return data;
+    }
+
+    public void setDrawerListener(CategoryDrawerListener listener) {
+        this.drawerListener = listener;
     }
 
     @Override
@@ -79,18 +78,18 @@ public class CategoryDrawer extends Fragment {
         adapter = new CategoryDrawerAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                drawerListener.onDrawerItemSelected(view, position);
-                mDrawerLayout.closeDrawer(containerView);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
+//        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
+//            @Override
+//            public void onClick(View view, int position) {
+//                drawerListener.onDrawerItemSelected(view, position);
+//                mDrawerLayout.closeDrawer(containerView);
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//
+//            }
+//        }));
 
         return layout;
     }
@@ -133,6 +132,10 @@ public class CategoryDrawer extends Fragment {
         public void onClick(View view, int position);
 
         public void onLongClick(View view, int position);
+    }
+
+    public interface CategoryDrawerListener {
+        public void onDrawerItemSelected(View view, int position);
     }
 
     static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
@@ -178,10 +181,6 @@ public class CategoryDrawer extends Fragment {
         }
 
 
-    }
-
-    public interface CategoryDrawerListener {
-        public void onDrawerItemSelected(View view, int position);
     }
     
 }

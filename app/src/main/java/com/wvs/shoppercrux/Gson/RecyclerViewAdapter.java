@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.wvs.shoppercrux.R;
-import com.wvs.shoppercrux.activities.StoreActivity;
 import com.wvs.shoppercrux.activities.StoreMapView;
 
 import java.util.List;

@@ -36,9 +36,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.BounceInterpolator;
@@ -87,6 +89,7 @@ public class StoreMapView extends AppCompatActivity implements
     String GET_JSON_DATA_HTTP_URL = "http://prachodayat.in/shopper_android_api/sellermap.php?id=";
     JsonArrayRequest jsonArrayRequest;
     RequestQueue requestQueue;
+    Toolbar toolbar;
     /**
      * Flag indicating whether a requested permission has been denied after returning in
      * {@link #onRequestPermissionsResult(int, String[], int[])}.
@@ -105,7 +108,6 @@ public class StoreMapView extends AppCompatActivity implements
      */
     private Marker mLastSelectedMarker;
     private TextView mTopText;
-
     private TextView mTagText;
     private String nickName;
     private SeekBar mRotationBar;
@@ -118,8 +120,11 @@ public class StoreMapView extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_map_view);
-
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Stores");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Intent intent = getIntent();
         String id = intent.getStringExtra("location_id");
 //        textView = (TextView) findViewById(R.id.display_id);
@@ -154,6 +159,16 @@ public class StoreMapView extends AppCompatActivity implements
         //   JSON_DATA_WEB_CALL();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public void onMapReady(GoogleMap map) {
 
@@ -662,6 +677,3 @@ public class StoreMapView extends AppCompatActivity implements
 
 
 }
-
-
-

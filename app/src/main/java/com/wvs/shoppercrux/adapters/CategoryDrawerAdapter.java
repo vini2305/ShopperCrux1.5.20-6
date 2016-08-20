@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wvs.shoppercrux.R;
 import com.wvs.shoppercrux.classes.CatDrawerItem;
@@ -45,8 +46,14 @@ public class CategoryDrawerAdapter extends RecyclerView.Adapter<CategoryDrawerAd
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.title.setText(list.get(position).getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
