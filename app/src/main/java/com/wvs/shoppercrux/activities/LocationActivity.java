@@ -1,11 +1,15 @@
 package com.wvs.shoppercrux.activities;
 
+import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,31 +32,36 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LocationActivity extends AppCompatActivity {
+public class LocationActivity extends Fragment {
 
     private final String TAG = "MainActivity";
-
+    Context context;
     private RecyclerView recyclerView;
-
     private LinearLayoutManager layoutManager;
-
+    private View view;
     private RecyclerViewAdapter adapter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dummy);
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.activity_dummy, container, false);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
        // recyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
-        layoutManager = new LinearLayoutManager(LocationActivity.this);
+
+        layoutManager = new LinearLayoutManager(context);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
 
         requestJsonObject();
+        return view;
     }
 
     private void requestJsonObject(){
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(getContext());
         String url ="http://prachodayat.in/shopper_android_api/location.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -65,7 +74,7 @@ public class LocationActivity extends AppCompatActivity {
                 List<ItemObject> posts = new ArrayList<ItemObject>();
                 posts = Arrays.asList(mGson.fromJson(response, ItemObject[].class));
 
-                adapter = new RecyclerViewAdapter(LocationActivity.this, posts);
+                adapter = new RecyclerViewAdapter(getContext(), posts);
                 recyclerView.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {

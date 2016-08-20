@@ -11,11 +11,16 @@
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-
+    <string name="focused_building_info">Focused Building</string>
+    <string name="focused_level_info">Focused Level</string>
+    <string name="indoor_demo_description">Demonstrates how to use the Indoor API</string>
+    <string name="indoor_demo_label">Indoor</string>
+    <string name="toggle_level_picker">Toggle Level Picker</string>
+    <string name="activate_higher_level">Activate Higher Level</string>
     <string name="nav_item_home">Home</string>
     <string name="nav_item_profile">Profile</string>
     <string name="nav_item_logout">Logout</string>
-
+    <string name="map_not_ready">Map is not ready yet</string>
     <string name="msg_sit_back">Sit back &amp; Relax! while we verify your mobile number</string>
     <string name="msg_manual_otp">(Enter the OTP below in case if we fail to detect the SMS automatically)</string>
     <string name="lbl_enter_otp">Enter OTP</string>

@@ -60,7 +60,9 @@
         <activity android:name=".activities.LocationActivity" />
         <activity android:name=".activities.StoreActivity" />
         <activity android:name=".activities.Product" />
-        <activity android:name=".activities.ProductList"></activity>
+        <activity android:name=".activities.ProductList" />
+        <activity android:name=".activities.StoreMapView" />
+        <activity android:name=".activities.SellerMap"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.wvs.shoppercrux.R;
 import com.wvs.shoppercrux.activities.StoreActivity;
+import com.wvs.shoppercrux.activities.StoreMapView;
 
 import java.util.List;
 
@@ -43,9 +44,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 ////                i.putExtra("location_id",itemList.get(position).getSongYear());
 //                context.startActivity(i);
                 String data =itemList.get(position).getSongYear();
-                Intent i = new Intent(context, StoreActivity.class);
+                Intent i = new Intent(context, StoreMapView.class);
                 i.putExtra("location_id",data);
                 context.startActivity(i);
+
+
                 Toast.makeText(context, itemList.get(position).getSongYear(), Toast.LENGTH_SHORT).show();
 
             }
